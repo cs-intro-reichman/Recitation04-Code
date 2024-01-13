@@ -1,7 +1,10 @@
 
 public class SetOps {
     public static void main(String[] args) {
+        int [] arr = {1, 8, 20, -3, 0, 1, 1, 6, 8};
+        int [] set = set(arr);
         
+        ArrayUtils.printArray(set);
     }
     // Question 4
     public static boolean contains(int[] arr, int value) {
@@ -57,6 +60,19 @@ public class SetOps {
         }
         return set(res);
     }
+
+    public static int [] unionSets1(int[] set1, int[] set2) {
+        int [] res = new int [set1.length + set2.length];
+        for (int i = 0; i < res.length; i++) {
+            if (i < set1.length){
+                res[i] = set1[i];
+            } else {
+                res[i] = set2[i - set1.length];
+            }
+        }
+        
+        return set(res);
+    }
     
     // Question 4, Expansion 5
     public static int [] intersectionSets(int[] set1, int[] set2) {
@@ -69,6 +85,7 @@ public class SetOps {
                 arr[size++] = smallSet[i];
             }
         }
+
         int [] res = new int [size];
         for (int i = 0; i < res.length; i++) {
             res[i] = arr[i];
